@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GT-R R35 Nismo — Expérience 3D</title>
+  <meta name="description" content="Présentation interactive en 3D de la GT-R R35 Nismo : rotation 360°, configurateur de couleur et fiche technique.">
+  <meta name="theme-color" content="#05060b">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preload" href="models/gtr.glb" as="fetch" crossorigin>
+  <script type="importmap">
+  { "imports": { "three": "./vendor/three.module.min.js", "three/addons/": "./vendor/jsm/" } }
+  </script>
+</head>
+<body>
+  <!-- Loader -->
+  <div id="loader" aria-live="polite">
+    <div class="loader-inner">
+      <div class="loader-logo">GT-R</div>
+      <div class="loader-bar"><span id="loader-fill"></span></div>
+      <div class="loader-txt"><span id="loader-pct">0</span>% — chargement du modèle 3D</div>
+    </div>
+  </div>
+
+  <canvas id="scene" aria-label="Modèle 3D de la voiture"></canvas>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <header class="nav">
+    <a href="#hero" class="brand"><span class="brand-mark"></span>GT-R<em>R35</em></a>
+    <nav>
+      <a href="#design">Design</a>
+      <a href="#moteur">Moteur</a>
+      <a href="#specs">Fiche technique</a>
+      <a href="#config" class="nav-cta">Configurer</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="hero" class="panel" data-cam="hero">
+      <div class="hero-copy">
+        <p class="kicker"><span class="dot"></span>Expérience 3D interactive</p>
+        <h1 class="glitch" data-text="GT-R R35">GT-R R35</h1>
+        <h2 class="sub">NISMO <span>// Godzilla</span></h2>
+        <p class="lead">Un monstre de 600 chevaux, quatre roues motrices et un V6 biturbo assemblé à la main. Fais défiler pour en faire le tour.</p>
+        <div class="hero-actions">
+          <a href="#config" class="btn btn-neon">Configurer la couleur</a>
+          <a href="#specs" class="btn btn-ghost">Fiche technique</a>
+        </div>
+      </div>
+      <div class="scroll-hint"><span></span>Scroll</div>
+    </section>
+
+    <!-- DESIGN -->
+    <section id="design" class="panel right" data-cam="side">
+      <div class="card glass">
+        <p class="kicker"><span class="dot"></span>01 — Design</p>
+        <h3>Taillée par le vent</h3>
+        <p>Une silhouette pensée en soufflerie : aileron carbone, diffuseur arrière et lame avant pour coller la voiture au bitume à haute vitesse.</p>
+        <ul class="feats">
+          <li><b>Carbone</b>Aileron, capot &amp; toit</li>
+          <li><b>Aéro</b>Appui maximal en courbe</li>
+          <li><b>20"</b>Jantes forgées</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- MOTEUR -->
+    <section id="moteur" class="panel left" data-cam="rear">
+      <div class="card glass">
+        <p class="kicker"><span class="dot"></span>02 — Moteur</p>
+        <h3>VR38DETT</h3>
+        <p>V6 3,8 L biturbo. Chaque moteur est assemblé par un seul technicien « Takumi », dans une salle blanche.</p>
+        <div class="gauge-row">
+          <div class="gauge" style="--v:.92"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50"/><circle class="g" cx="60" cy="60" r="50"/></svg><div><b data-count="600">0</b><small>ch</small></div></div>
+          <div class="gauge" style="--v:.8"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50"/><circle class="g" cx="60" cy="60" r="50"/></svg><div><b data-count="652">0</b><small>Nm</small></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPECS -->
+    <section id="specs" class="panel wide" data-cam="front">
+      <div class="specs glass">
+        <p class="kicker"><span class="dot"></span>03 — Fiche technique</p>
+        <h3>Les chiffres</h3>
+        <div class="spec-grid">
+          <div class="spec"><small>Puissance</small><b><i data-count="600">0</i> ch</b></div>
+          <div class="spec"><small>Couple</small><b><i data-count="652">0</i> Nm</b></div>
+          <div class="spec"><small>0 – 100 km/h</small><b>≈ <i data-count="2.5" data-dec="1">0</i> s</b></div>
+          <div class="spec"><small>Vitesse max</small><b><i data-count="315">0</i> km/h</b></div>
+          <div class="spec"><small>Moteur</small><b>V6 3.8 L biturbo</b></div>
+          <div class="spec"><small>Transmission</small><b>4 roues motrices</b></div>
+          <div class="spec"><small>Boîte</small><b>Double embrayage 6</b></div>
+          <div class="spec"><small>Poids</small><b>≈ <i data-count="1720">0</i> kg</b></div>
+        </div>
+        <p class="note">Valeurs indicatives.</p>
+      </div>
+    </section>
+
+    <!-- CONFIG -->
+    <section id="config" class="panel config" data-cam="config">
+      <div class="config-ui glass">
+        <p class="kicker"><span class="dot"></span>04 — Configurateur</p>
+        <h3>À toi de jouer</h3>
+        <p class="hint">Fais tourner la voiture à la souris ou au doigt, zoome avec la molette.</p>
+        <div class="swatch-label">Peinture : <b id="paint-name">Stealth Grey</b></div>
+        <div class="swatches" id="swatches" role="radiogroup" aria-label="Couleur de carrosserie"></div>
+        <div class="swatch-label">Jantes : <b id="rim-name">Gold</b></div>
+        <div class="swatches small" id="rims" role="radiogroup" aria-label="Couleur des jantes"></div>
+        <div class="toggles">
+          <button class="btn btn-ghost sm" id="btn-spin" aria-pressed="true">Rotation auto</button>
+          <button class="btn btn-ghost sm" id="btn-lights" aria-pressed="true">Phares</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>Projet personnel de démonstration 3D — non affilié à Nissan. Réalisé avec Three.js.</p>
+  </footer>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
